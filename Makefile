@@ -23,6 +23,7 @@ CCFILES := $(wildcard *.cc)
 HHFILES := $(wildcard *.hh)
 OBJS := $(patsubst %.cc,%.o,$(CCFILES))
 TAR_FILE = mario-pro-2-$(USER)-$(shell date +%s).tgz
+LDFLAGS += -lm
 
 mario_pro_2: $(OBJS)
 	g++ -g3 -o mario_pro_2 $(OBJS) $(LDFLAGS)

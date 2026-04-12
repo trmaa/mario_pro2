@@ -5,6 +5,9 @@
 #include <vector>
 #include "platform.hh"
 #include "window.hh"
+#include "geometry.hh"
+
+using namespace pro2;
 
 class Mario {
 private:
@@ -27,6 +30,8 @@ public:
 		: pos_(pos), last_pos_(pos), controler_(c) {}
 
 	void paint(pro2::Window& window) const;
+
+	bool coliding(Pt p);
 
 	pro2::Pt pos() const {
 		return pos_;

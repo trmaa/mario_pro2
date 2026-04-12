@@ -1,5 +1,6 @@
 #include "mario.hh"
 #include "utils.hh"
+#include "geometry.hh"
 
 using namespace std;
 using namespace pro2;
@@ -33,6 +34,15 @@ const vector<vector<int>> Mario::mario_sprite_normal_ = {
 	{w, w, w, w, _, _, _, _, w, w, w, w},
 };
 // clang-format on
+
+bool Mario::coliding(Pt p)
+{
+	if (p.x > pos_.x-16 && p.x < pos_.x+8)
+		if (p.y > pos_.y-32 && p.y < pos_.y)
+			return true;
+
+	return false;
+}
 
 void Mario::paint(pro2::Window& window) const {
 	const Pt top_left = {pos_.x - 6, pos_.y - 15};

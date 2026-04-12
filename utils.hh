@@ -7,6 +7,8 @@
 
 namespace pro2 {
 
+void paint_rect(Window& window, struct Rect rec, Color col);
+
 /**
  * @brief Dibuixa una línia horitzontal a la finestra.
  *
@@ -40,7 +42,7 @@ void paint_vline(pro2::Window& window, int x, int yini, int yfin, pro2::Color co
 void paint_sprite(pro2::Window&                        window,
                   pro2::Pt                             orig,
                   const std::vector<std::vector<int>>& sprite,
-                  bool                                 mirror);
+                  bool                                 mirror = false);
 
 }  // namespace pro2
 

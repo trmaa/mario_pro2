@@ -5,11 +5,17 @@
 #include "mario.hh"
 #include "platform.hh"
 #include "window.hh"
+#include "coin.hh"
 
 class Game {
+	int tick_;
+
+	int score_ = 0;
+
 	Mario                 mario_;
 	Mario                 mario2_;
 	std::vector<Platform> platforms_;
+	std::vector<Coin> coins_;
 
 	bool finished_;
 	bool paused_;
