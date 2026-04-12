@@ -28,6 +28,26 @@ static sprite_t nullsprite(int size = 16)
 	return res;
 }
 
+static void coin_texture(Pt uv, sprite_t& spr, int x, int y)
+{
+	float rad = 8*8; // squaring to avoid sqrt
+	float dist = uv.x*uv.x + uv.y*uv.y; 
+
+	if (dist > rad) {
+		spr[y][x] = -1; // transparent
+	} else {
+		// gradient de vermell a groc.
+		float bright = (dist / rad) / 2 + 0.5;
+		unsigned char r = 0xff;
+		unsigned char g = 0xff * bright;
+		int col = 0;
+		col |= r << 16;
+		col |= g << 8;
+
+		spr[y][x] = col;
+	}
+}
+
 Coin::Coin(Pt pos)
 	: pos_(pos), animation_len_(4)
 {
@@ -36,53 +56,12 @@ Coin::Coin(Pt pos)
 
 	for (int y = 0; y < 16; y++)
 		for (int x = 0; x < 16; x++) {
-			Pt c = { x-8, y-8 };
-
-			float rad = 8*8; // squaring to avoid sqrt
-			float dist = c.x*c.x + c.y*c.y; 
-
-			if (dist > rad) {
-				animation_[0][y][x] = -1; // transparent
-			} else {
-				// gradient de vermell a groc.
-				float bright = (dist / rad) / 4 + 0.75;
-				unsigned char r = 0xff;
-				unsigned char g = 0xff * bright;
-				int col = 0;
-				col |= r << 16;
-				col |= g << 8;
-
-				animation_[0][y][x] = col;
-			}
+			Pt uv = { x-8, y-8 };
+			coin_texture(uv, animation_[0], x, y);	
+			uv.x *= 1.8; // ampliar FOV per fer la imatge fina
+			coin_texture(uv, animation_[1], x, y);	
+			coin_texture(uv, animation_[3], x, y);	
 		}
-
-	for (int y = 0; y < 16; y++)
-		for (int x = 0; x < 16; x++) {
-			Pt c = { x-8, y-8 };
-			c.x *= 1.8; // estirar el FOV horizontal per veure la
-				    // moneda mes estreta.
-
-			float rad = 8*8; // squaring to avoid sqrt
-			float dist = c.x*c.x + c.y*c.y; 
-
-			if (dist > rad) {
-				animation_[1][y][x] = -1; // transparent
-				animation_[3][y][x] = -1; // transparent
-			} else {
-				// gradient de vermell a groc.
-				float bright = (dist / rad) / 4 + 0.75;
-				unsigned char r = 0xff;
-				unsigned char g = 0xff * bright;
-				int col = 0;
-				col |= r << 16;
-				col |= g << 8;
-
-				animation_[1][y][x] = col;
-				animation_[3][y][x] = col;
-			}
-		}
-
-
 
 	for (int j = 0; j < 16; j++)
 		for (int i = 0; i < 16; i++) {

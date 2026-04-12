@@ -2,6 +2,8 @@
 #include "utils.hh"
 #include "geometry.hh"
 
+#include "window.hh"
+
 using namespace std;
 using namespace pro2;
 
@@ -37,8 +39,8 @@ const vector<vector<int>> Mario::mario_sprite_normal_ = {
 
 bool Mario::coliding(Pt p)
 {
-	if (p.x > pos_.x-16 && p.x < pos_.x+8)
-		if (p.y > pos_.y-32 && p.y < pos_.y)
+	if (p.x > pos_.x-10 && p.x < pos_.x+10)
+		if (p.y > pos_.y-16 && p.y < pos_.y)
 			return true;
 
 	return false;

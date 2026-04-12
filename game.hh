@@ -35,7 +35,7 @@ public:
 	}
 
 private:
-	static constexpr int sky_blue = 0x5c94fc;
+	static constexpr int sky_blue = 0x005c94fc; // fix opacity
 };
 
 #endif

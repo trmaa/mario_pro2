@@ -16,7 +16,7 @@ public:
 	sprite_t get_sprite(int tick) const;
 	void paint(pro2::Window& window, int tick);
 
-	Pt pos() const { return pos_; }
+	Pt pos() const { return { pos_.x+8, pos_.y+8 }; }
 
 private:
 	Pt pos_;
