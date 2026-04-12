@@ -33,7 +33,7 @@ static void coin_texture(Pt uv, sprite_t& spr, int x, int y)
 	float rad = 8*8; // squaring to avoid sqrt
 	float dist = uv.x*uv.x + uv.y*uv.y; 
 
-	if (dist > rad) {
+	if (dist > rad || dist < rad / 8) {
 		spr[y][x] = -1; // transparent
 	} else {
 		// gradient de vermell a groc.
