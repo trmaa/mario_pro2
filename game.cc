@@ -42,10 +42,12 @@ void Game::update_objects(pro2::Window& window) {
 	mario_.update(window, platforms_);
 	mario2_.update(window, platforms_);
 
-	for (auto it = coins_.begin(); it != coins_.end(); it++)
+	for (auto it = coins_.begin(); it != coins_.end();)
 		if (mario_.coliding(it->pos()) || mario2_.coliding(it->pos())) {
-			coins_.erase(it);
+			it = coins_.erase(it);  // erase returns next valid iterator
 			score_++;
+		} else {
+			it++;
 		}
 }
 
