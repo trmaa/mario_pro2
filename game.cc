@@ -1,5 +1,7 @@
 #include "game.hh"
 #include "assert.hh"
+#include "utils.hh"
+#include "geometry.hh"
 
 using namespace pro2;
 
@@ -54,9 +56,26 @@ void Game::update(pro2::Window& window) {
 
 void Game::paint(pro2::Window& window) {
 	window.clear(sky_blue);
+
 	for (const Platform& p : platforms_) {
 		p.paint(window);
 	}
+
 	mario_.paint(window);
 	mario2_.paint(window);
+
+	{
+		Pt cc = window.camera_center();
+		cc.x -= window.width() / 2;
+		cc.y -= window.height() / 2;
+		int ww = window.width() + cc.x;
+		int wh = window.height() + cc.y;
+
+		int col = 0xffff00ff;
+
+		paint_hline(window, cc.x, ww, cc.y, col);	
+		paint_hline(window, cc.x, ww, wh-1, col);	
+		paint_vline(window, cc.x, cc.y, wh, col);
+		paint_vline(window, ww-1, cc.y, wh, col);
+	}
 }
