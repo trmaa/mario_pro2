@@ -64,13 +64,12 @@ Coin::Coin(Pt pos)
 		}
 
 	for (int j = 0; j < 16; j++)
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 16; i++)
 			if (i >= 7 && i <= 9)
 				animation_[2][j][i] = 0x00ffff00;
 			else 
 				animation_[2][j][i] = -1; // no blanc, sino
 							  // null
-		}
 }
 
 sprite_t Coin::get_sprite(int tick) const
