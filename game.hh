@@ -6,6 +6,7 @@
 #include "platform.hh"
 #include "window.hh"
 #include "coin.hh"
+#include "finder.hh"
 
 class Game {
 	int tick_;
@@ -13,9 +14,10 @@ class Game {
 	int score_ = 0;
 
 	Mario                 mario_;
-	Mario                 mario2_;
 	std::vector<Platform> platforms_;
+	Finder<Platform> plat_finder_;
 	std::vector<Coin> coins_;
+	Finder<Coin> coin_finder_;
 
 	bool finished_;
 	bool paused_;

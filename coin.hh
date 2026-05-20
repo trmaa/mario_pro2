@@ -14,9 +14,12 @@ public:
 	Coin(Pt pos);
 
 	sprite_t get_sprite(int tick) const;
-	void paint(pro2::Window& window, int tick);
+	void paint(pro2::Window& window, int tick) const;
+	void move(int tick);
 
 	Pt pos() const { return { pos_.x+8, pos_.y+8 }; }
+
+	Rect get_rect() const;
 
 private:
 	Pt pos_;

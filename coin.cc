@@ -82,14 +82,22 @@ sprite_t Coin::get_sprite(int tick) const
 		if (tick % dur <= section)
 			return animation_[frame];
 
-
 	return nullsprite();
 }
 
-void Coin::paint(pro2::Window& window, int tick)
+void Coin::move(int tick)
 {
-	pos_.y += sin(tick*0.1 + pos_.x*0.02)*2;
+	// doesn't substract...
+	//pos_.y += sin(tick*0.1 + pos_.x*0.02)*2;
+}
 
+void Coin::paint(pro2::Window& window, int tick) const
+{
 	sprite_t spr = get_sprite(tick);
 	paint_sprite(window, pos_, spr);
+}
+
+Rect Coin::get_rect() const
+{
+	return { pos_.x, pos_.y, pos_.x + 16, pos_.y +16 };
 }

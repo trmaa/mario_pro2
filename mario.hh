@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include "platform.hh"
 #include "window.hh"
 #include "geometry.hh"
 
+using namespace std;
 using namespace pro2;
 
 class Mario {
@@ -58,7 +60,7 @@ public:
 
 	void jump();
 
-	void update(pro2::Window& window, const std::vector<Platform>& platforms);
+	void update(pro2::Window& window, set<const Platform *> platforms);
 
 private:
 	static const std::vector<std::vector<int>> mario_sprite_normal_;
